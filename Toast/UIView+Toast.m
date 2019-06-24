@@ -306,13 +306,22 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
     CGRect messageRect = CGRectZero;
     
     if(messageLabel != nil) {
-        messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding;
-//        messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding;
-        messageRect.origin.y = style.verticalPadding;
+        NSLog(@"标题文字是 == %@",title);
+        if (title.length == 0 && image) {
+            messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding;
+            //        messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding;
+            messageRect.origin.y = style.verticalPadding;
+            
+            messageRect.size.width = messageLabel.bounds.size.width;
+            //        messageRect.size.height = messageLabel.bounds.size.height;
+            messageRect.size.height = imageView.bounds.size.height;
+        }else{
+            messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding;
+            messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding;
+            messageRect.size.width = messageLabel.bounds.size.width;
+            messageRect.size.height = messageLabel.bounds.size.height;
+        }
 
-        messageRect.size.width = messageLabel.bounds.size.width;
-//        messageRect.size.height = messageLabel.bounds.size.height;
-        messageRect.size.height = imageView.bounds.size.height;
 
     }
     
@@ -337,13 +346,6 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
     
     if(imageView != nil) {
         [wrapperView addSubview:imageView];
-//        if (titleLabel == nil && messageLabel != nil) {
-//                messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding;
-//                messageRect.origin.y =  imageView.bounds.origin.y;
-//                messageRect.size.width = messageLabel.bounds.size.width;
-//                messageRect.size.height = imageView.bounds.size.height;
-//            NSLog(@"messageRect == %@",NSStringFromCGRect(messageRect));
-//        }
     }
     
     return wrapperView;
