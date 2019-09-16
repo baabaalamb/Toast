@@ -315,6 +315,13 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
             messageRect.size.width = messageLabel.bounds.size.width;
             //        messageRect.size.height = messageLabel.bounds.size.height;
             messageRect.size.height = imageView.bounds.size.height;
+            if (message.length > 15) {
+                imageView.frame = CGRectMake(style.horizontalPadding, style.verticalPadding + imageView.bounds.size.height/2, style.imageSize.width, style.imageSize.height);
+                messageRect.size.height = imageView.bounds.size.height * 2;
+
+            }
+            
+            
         }else{
             messageRect.origin.x = imageRect.origin.x + imageRect.size.width + style.horizontalPadding;
             messageRect.origin.y = titleRect.origin.y + titleRect.size.height + style.verticalPadding;
@@ -495,7 +502,7 @@ static const NSString * CSToastQueueKey             = @"CSToastQueueKey";
         self.shadowOpacity = 0.8;
         self.shadowRadius = 6.0;
         self.shadowOffset = CGSizeMake(4.0, 4.0);
-        self.imageSize = CGSizeMake(80.0, 80.0);
+        self.imageSize = CGSizeMake(20.0, 20.0);
         self.activitySize = CGSizeMake(100.0, 100.0);
         self.fadeDuration = 0.2;
     }

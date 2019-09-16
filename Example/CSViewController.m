@@ -197,11 +197,11 @@ static NSString * ZOToastDemoCellId     = @"ZOToastDemoCellId";
     } else if (indexPath.row == 3) {
         
         // Make toast with an image
-        [self.navigationController.view makeToast:@"This is a piece of toast with an image"
+        [self.navigationController.view makeToast:@"This is a piece of toast with an image,This is a piece of toast with an image"
                                          duration:2.0
                                          position:CSToastPositionCenter
                                             title:nil
-                                            image:[UIImage imageNamed:@"toast.png"]
+                                            image:[UIImage imageNamed:@"erweima_closed_icon"]
                                             style:nil
                                        completion:nil];
         
